@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>digiPour</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="panel">
+    <header>
+      <h1>digiPour</h1>
+      <p class="sub">Acrylic pouring, digitally</p>
+    </header>
+
+    <section>
+      <h2>Tool</h2>
+      <div class="tools" id="tools">
+        <button data-tool="pour" title="Pour (P)">Pour<kbd>P</kbd></button>
+        <button data-tool="swipe" title="Palette knife swipe (S)">Swipe<kbd>S</kbd></button>
+        <button data-tool="blow" title="Blow / hair dryer (B)">Blow<kbd>B</kbd></button>
+        <button data-tool="tilt" title="Grab and tilt the canvas (T)">Tilt<kbd>T</kbd></button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Paints</h2>
+      <p class="hint">Click to choose. Shift-click to put several in the cup for a dirty pour.</p>
+      <div class="palette" id="palette"></div>
+    </section>
+
+    <section>
+      <h2>Tilt</h2>
+      <div class="tilt-row">
+        <div class="tiltpad" id="tiltpad" title="Drag to tilt, double-click to level"><div class="tiltdot"></div></div>
+        <p class="hint">Drag the dot or hold the arrow keys to tilt. Paint runs toward the dot.<br><kbd>Space</kbd> levels the canvas.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Settings</h2>
+      <div class="sliders" id="sliders"></div>
+    </section>
+
+    <section class="actions">
+      <button id="base" title="Cover the canvas with a thin coat of the chosen paint">Base coat</button>
+      <button id="save">Save PNG</button>
+      <button id="clear" class="danger">Clear</button>
+      <label class="ground">Canvas <input type="color" id="ground" value="#ece7dd"></label>
+    </section>
+  </aside>
+
+  <main class="stage">
+    <div class="frame" id="frame">
+      <canvas id="canvas"></canvas>
+      <div class="brush" id="brush"></div>
+    </div>
+    <div class="status" id="status"></div>
+  </main>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

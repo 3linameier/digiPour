@@ -1,0 +1,192 @@
+:root {
+  --bg: #141117;
+  --panel: #1d1922;
+  --line: #2f2937;
+  --text: #ebe6f0;
+  --muted: #9a91a6;
+  --accent: #8f7cff;
+  --danger: #e0707a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+}
+
+.panel {
+  width: 290px;
+  flex: none;
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  padding: 18px 18px 24px;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+h1 { margin: 0; font-size: 22px; letter-spacing: 0.02em; }
+h2 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.sub { margin: 2px 0 0; color: var(--muted); }
+section { margin-top: 20px; }
+.hint { margin: 0 0 8px; color: var(--muted); font-size: 12px; }
+
+button {
+  font: inherit;
+  color: var(--text);
+  background: #2a2431;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+button:hover { border-color: #4a4156; }
+button.active { border-color: var(--accent); background: #2f2847; }
+button.danger:hover { border-color: var(--danger); color: var(--danger); }
+
+kbd {
+  font: 10px ui-monospace, monospace;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 4px;
+  margin-left: 6px;
+}
+
+.tools { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+
+.palette { display: grid; gap: 6px; }
+.slot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+.slot.selected { border-color: var(--accent); background: #2a2440; }
+.swatch {
+  width: 34px;
+  height: 26px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid #0006;
+  position: relative;
+}
+.swatch .num {
+  position: absolute;
+  left: 3px;
+  bottom: 1px;
+  font-size: 10px;
+  color: #fff;
+  text-shadow: 0 0 3px #000;
+}
+.slot input[type="color"] {
+  width: 26px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.toggle {
+  font-size: 11px;
+  padding: 3px 7px;
+  border-radius: 12px;
+  color: var(--muted);
+}
+.toggle.on { color: var(--text); border-color: var(--accent); background: #2f2847; }
+
+.tilt-row { display: flex; gap: 12px; align-items: center; }
+.tilt-row .hint { margin: 0; }
+.tiltpad {
+  flex: none;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: radial-gradient(circle, #2a2431 0 30%, #1a161f 70%);
+  position: relative;
+  touch-action: none;
+  cursor: grab;
+}
+.tiltdot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  pointer-events: none;
+}
+
+.sliders { display: grid; gap: 10px; }
+.sliders label { display: grid; gap: 2px; font-size: 12px; }
+.sliders .row { display: flex; justify-content: space-between; color: var(--muted); }
+.sliders input { width: 100%; accent-color: var(--accent); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.ground { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; }
+.ground input { width: 28px; height: 22px; border: none; padding: 0; background: none; }
+
+.stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  min-width: 0;
+  position: relative;
+}
+.frame {
+  position: relative;
+  box-shadow: 0 20px 60px #000a, 0 0 0 1px #0008;
+  touch-action: none;
+}
+canvas { display: block; cursor: none; }
+.brush {
+  position: absolute;
+  border: 1px solid #fffc;
+  box-shadow: 0 0 0 1px #0006;
+  border-radius: 50%;
+  pointer-events: none;
+  display: none;
+  transform: translate(-50%, -50%);
+}
+.status {
+  position: absolute;
+  bottom: 8px;
+  right: 14px;
+  color: var(--muted);
+  font: 11px ui-monospace, monospace;
+}
+.error {
+  max-width: 480px;
+  color: var(--danger);
+  white-space: pre-wrap;
+  font: 12px ui-monospace, monospace;
+}
+
+@media (max-width: 760px) {
+  body { flex-direction: column-reverse; }
+  .panel { width: auto; max-height: none; border-right: none; border-top: 1px solid var(--line); }
+  .stage { padding: 16px; }
+}
